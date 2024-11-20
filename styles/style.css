@@ -1,0 +1,39 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    margin: 50px 0 0 100px;
+    background: #eeeef5;
+}
+
+div {
+    width: 600px;
+    text-align: center;
+}
+h1 {
+    color: #8877ef;
+    text-shadow: 2px 2px 1px #6d33ff;
+    font-size: 50px;
+}
+
+h2 {
+    color: #595980;
+    font-size: 30px;
+    margin: 10px 0 10px 20px;
+    text-align: left;
+}
+
+textarea {
+    font-family: "Open Sans", sans-serif;
+    border: 2px solid #c4b3fc;
+    color: #6219b7;
+    background-color: #ece9fa;
+    border-radius: 6px;
+    outline-color: #7d6aef;
+    font-size: 20px;
+    padding: 5px 0 0 10px;
+    letter-spacing: 2px;
+    margin: 0 0 25px 0;
+}
+
+#input-area {
+    background-color: #f6f4ff;
+}
