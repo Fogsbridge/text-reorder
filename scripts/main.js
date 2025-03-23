@@ -12,38 +12,39 @@ inputArea.addEventListener('input', () => {
 function reorder(text) {
     // 匹配标点符号和空格字符
     const regex = /[\p{P}\s]/u;
-    let textArr = text.split('');
 
-    let stringArr = [];
-    let temp = "";
-    // 将字符串按照标点符号的位置分割成多段
-    textArr.forEach(char => {
-        temp += char;
-        if(regex.test(char)) {
-            stringArr.push(temp);
-            temp = "";
+    // // 将字符串按照标点符号的位置分割成多段
+    let strArr = [];
+    (function split(text) {
+        let index = text.search(regex);
+        if (index === -1) {
+            strArr.push(text);
+        } else {
+            let extract = text.substring(0, index + 1);
+            strArr.push(extract);
+            let restStr = text.substring(index + 1);
+            split(restStr);
         }
-    })
-    stringArr.push(temp);
+    })(text)
 
-    let buffer = "";
-    for (let i = 0; i < stringArr.length; i++) {
-        const str = stringArr[i];
+
+    let result = "";
+    for (let i = 0; i < strArr.length; i++) {
+        let str = strArr[i];
         // 如果内容较短或者是标点符号则不必乱序，以免造成阅读困难。
         if (str.length < 3) {
-            buffer += str;
+            result += str;
             continue;
         }
         // 将内容打乱
-        let charArr = str.split("");
-        for (let j = 0; j < charArr.length; j++) {
+        for (let j = 1; j < str.length; j++) {
             if (j % 3 === 0) {
-                let swap = charArr[j - 1];
-                charArr[j - 1] = charArr[j - 2];
-                charArr[j - 2] = swap;
+                let swap = str[j - 1];
+                str = str.replace(swap, str[j - 2]);
+                str = str.replace(str[j - 2], swap);
             }
         }
-        buffer += charArr.join("");
+        result += str;
     }
-    return buffer;
+    return result;
 }
